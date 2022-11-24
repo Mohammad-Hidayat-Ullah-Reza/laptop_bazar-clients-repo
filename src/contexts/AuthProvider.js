@@ -7,7 +7,6 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
-import { current } from "daisyui/src/colors";
 
 export const AuthContext = createContext();
 
@@ -24,7 +23,7 @@ const AuthProvider = ({ children }) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-  const LogOut = () => {
+  const logOut = () => {
     return signOut(auth);
   };
 
@@ -42,7 +41,7 @@ const AuthProvider = ({ children }) => {
   const authInfo = {
     emailAndPasswordSignUp,
     emailAndPasswordLogIn,
-    LogOut,
+    logOut,
     user,
     setUser,
   };

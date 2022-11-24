@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthProvider";
 
 const SignUp = () => {
+  const { emailAndPasswordSignUp } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
@@ -10,8 +12,13 @@ const SignUp = () => {
   } = useForm();
 
   const handleSignUp = (data, e) => {
-    e.target.reset();
-    console.log(data);
+    emailAndPasswordSignUp(data.email, data.password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        e.target.reset();
+      })
+      .catch((e) => console.log(e));
   };
   return (
     <form
