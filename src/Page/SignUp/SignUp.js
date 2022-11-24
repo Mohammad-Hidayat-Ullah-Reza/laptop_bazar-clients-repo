@@ -75,11 +75,14 @@ const SignUp = () => {
                 <span className="label-text">Password</span>
               </label>
               <input
-                {...register("password", { required: true })}
+                {...register("password", { required: "Password is required" })}
                 type="password"
                 placeholder="password"
                 className="input input-bordered"
               />
+              {errors.password && (
+                <p className="text-red-600 mt-2">{errors.password?.message}</p>
+              )}
               <label className="label">
                 <div className="label-text-alt">
                   Already have an account?
