@@ -24,11 +24,11 @@ const categoriesData = [
 
 const Categories = () => {
   return (
-    <div className="px-10 my-20">
+    <div id="categories" className="px-10 my-20">
       <h3 className="text-4xl font-bold text-blue-900 text-center my-7">
-        Categories
+        Laptop Categories
       </h3>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-7">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
         {categoriesData.map((category) => (
           <CategoryCard key={category.id} category={category}></CategoryCard>
         ))}

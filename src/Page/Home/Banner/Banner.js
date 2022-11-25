@@ -21,10 +21,10 @@ const Banner = () => {
             services, Laptop Bazar is the easiest way to start.
           </p>
           <div className="flex justify-end items-center">
-            <Link to="" className="btn btn-primary mr-7">
+            <a href="#categories" className="btn btn-primary mr-7">
               Buy Now
               <FaArrowRight className="ml-2"></FaArrowRight>
-            </Link>
+            </a>
             <button className="btn btn-outline btn-info">
               Sell Now<FaArrowRight className="ml-2"></FaArrowRight>
             </button>
