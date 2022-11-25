@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider";
+import logo from "../../../assests/img/logo.png";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -11,7 +12,7 @@ const Navbar = () => {
       .catch((e) => console.log(e));
   };
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-base-100 px-10">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -70,7 +71,10 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-        <Link className="btn btn-ghost normal-case text-xl">Laptop Bazar</Link>
+        <Link to="/" className="btn btn-ghost normal-case text-xl">
+          <img src={logo} alt="laptop bazar logo" className="w-10 mr-2" />
+          Laptop Bazar
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal p-0">
@@ -112,11 +116,11 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         {user?.uid ? (
-          <button onClick={handleLogOut} className="btn">
+          <button onClick={handleLogOut} className="btn btn-primary">
             Log Out
           </button>
         ) : (
-          <Link to="/login" className="btn">
+          <Link to="/login" className="btn btn-primary">
             Log In
           </Link>
         )}

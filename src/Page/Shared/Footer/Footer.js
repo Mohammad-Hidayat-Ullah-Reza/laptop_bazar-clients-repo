@@ -12,36 +12,36 @@ const Footer = () => {
   return (
     <footer className="footer p-10 bg-base-100 text-base-content">
       <div>
-        <span className="footer-title">Services</span>
-        <Link className="link link-hover">Branding</Link>
-        <Link className="link link-hover">Design</Link>
-        <Link className="link link-hover">Marketing</Link>
-        <Link className="link link-hover">Advertisement</Link>
+        <span className="footer-title text-blue-900">Services</span>
+        <Link className="link link-hover text-blue-900">Branding</Link>
+        <Link className="link link-hover text-blue-900">Design</Link>
+        <Link className="link link-hover text-blue-900">Marketing</Link>
+        <Link className="link link-hover text-blue-900">Advertisement</Link>
       </div>
       <div>
-        <span className="footer-title">Company</span>
-        <Link className="link link-hover">About us</Link>
-        <Link className="link link-hover">Blog</Link>
-        <Link className="link link-hover">Dashboard</Link>
-        <Link className="link link-hover">Press kit</Link>
+        <span className="footer-title text-blue-900">Company</span>
+        <Link className="link link-hover text-blue-900">About us</Link>
+        <Link className="link link-hover text-blue-900">Blog</Link>
+        <Link className="link link-hover text-blue-900">Dashboard</Link>
+        <Link className="link link-hover text-blue-900">Press kit</Link>
       </div>
       <div>
-        <span className="footer-title">Social</span>
+        <span className="footer-title text-blue-900">Social</span>
         <div className="grid grid-flow-col gap-4">
           <a href="https://twitter.com/">
-            <FaTwitter className="text-2xl"></FaTwitter>
+            <FaTwitter className="text-2xl text-blue-900"></FaTwitter>
           </a>
           <a href="https://www.youtube.com/">
-            <FaYoutube className="text-2xl"></FaYoutube>
+            <FaYoutube className="text-2xl text-blue-900"></FaYoutube>
           </a>
           <a href="https://www.facebook.com/">
-            <FaFacebook className="text-2xl"></FaFacebook>
+            <FaFacebook className="text-2xl text-blue-900"></FaFacebook>
           </a>
           <a href="https://www.linkedin.com/">
-            <FaLinkedin className="text-2xl"></FaLinkedin>
+            <FaLinkedin className="text-2xl text-blue-900"></FaLinkedin>
           </a>
           <a href="https://github.com/">
-            <FaGithub className="text-2xl"></FaGithub>
+            <FaGithub className="text-2xl text-blue-900"></FaGithub>
           </a>
         </div>
       </div>
