@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 
 const providerGoogle = new GoogleAuthProvider();
 
-const GoogleProvider = ({ value }) => {
+const GoogleProvider = ({ value, saveUser }) => {
   const { popUpSignIn } = useContext(AuthContext);
 
   const handleGoogleSignIn = () => {
@@ -15,6 +15,8 @@ const GoogleProvider = ({ value }) => {
         const user = result.user;
         console.log(user);
         toast.success(`${value} WITH GOOGLE SUCCESSFUL`);
+        const buyer = "buyer";
+        saveUser(user.displayName, user.email, buyer);
       })
       .catch((e) => console.log(e));
   };

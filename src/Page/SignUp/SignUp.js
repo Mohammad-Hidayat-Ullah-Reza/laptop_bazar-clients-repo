@@ -22,13 +22,32 @@ const SignUp = () => {
           displayName: data.name,
         };
         updateUserProfile(userInfo)
-          .then(() => {})
+          .then(() => {
+            saveUser(data.name, data.email, data.role);
+          })
           .catch((e) => console.log(e));
         console.log(user);
         e.target.reset();
       })
       .catch((e) => console.log(e));
   };
+
+  const saveUser = (name, email, role) => {
+    const user = { name, email, role };
+    fetch("http://localhost:5000/users", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((e) => console.log(e));
+  };
+
   return (
     <div className="hero min-h-screen bg-base-200 py-10">
       <div className="hero-content w-96 flex-col lg:flex-row-reverse">
@@ -141,7 +160,10 @@ const SignUp = () => {
                 </button>
               </div>
             </form>
-            <GoogleProvider value={"SIGN UP"}></GoogleProvider>
+            <GoogleProvider
+              value={"SIGN UP"}
+              saveUser={saveUser}
+            ></GoogleProvider>
           </div>
         </div>
       </div>
