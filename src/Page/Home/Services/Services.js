@@ -1,9 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useState } from "react";
 import ServicesCard from "./ServicesCard";
 
 const Services = () => {
-  const { data: services = [], isLoading } = useQuery({
+  const { data: services = [] } = useQuery({
     queryKey: ["services"],
     queryFn: () =>
       fetch("http://localhost:5000/services").then((res) => res.json()),
