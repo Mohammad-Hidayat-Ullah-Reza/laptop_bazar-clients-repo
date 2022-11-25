@@ -1,7 +1,6 @@
-import React from "react";
 import { BsCheckCircleFill } from "react-icons/bs";
 
-const LaptopCard = ({ categoryDetails }) => {
+const LaptopCard = ({ categoryDetails, setCategoryInfo }) => {
   const {
     laptop_img,
     laptop_name,
@@ -14,6 +13,11 @@ const LaptopCard = ({ categoryDetails }) => {
     seller_verified,
     booked,
   } = categoryDetails;
+
+  const handleCategoryInfo = () => {
+    setCategoryInfo(categoryDetails);
+  };
+
   return (
     <div className={booked ? "hidden" : "block"}>
       <div className="card card-compact w-96 bg-base-100 shadow-xl">
@@ -38,7 +42,13 @@ const LaptopCard = ({ categoryDetails }) => {
             )}{" "}
           </p>
           <div className="flex flex-col gap-2 mt-5">
-            <button className="btn btn-primary">Book Now</button>
+            <label
+              onClick={handleCategoryInfo}
+              htmlFor="booking-modal"
+              className="btn btn-primary"
+            >
+              Book Now
+            </label>
             <button className="btn btn-primary">Add to Wishlist</button>
           </div>
         </div>
