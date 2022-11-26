@@ -1,13 +1,16 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 import toast from "react-hot-toast";
 import GoogleProvider from "../Shared/GoogleProvider/GoogleProvider";
 
 const Login = () => {
   const { emailAndPasswordLogIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
 
+  const from = location.state?.from?.pathname || "/";
   const {
     register,
     handleSubmit,
@@ -20,6 +23,7 @@ const Login = () => {
         const user = result.user;
         console.log(user);
         toast.success("Successfully Logged In");
+        navigate(from, { replace: true });
         e.target.reset();
       })
       .catch((e) => console.log(e));
@@ -103,7 +107,7 @@ const Login = () => {
                   Login
                 </button>
               </div>
-              <GoogleProvider value={"LOGIN"}></GoogleProvider>
+              <GoogleProvider value={"LOGIN"} from={from}></GoogleProvider>
             </form>
           </div>
         </div>

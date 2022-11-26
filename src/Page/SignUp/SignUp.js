@@ -1,12 +1,13 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 import toast from "react-hot-toast";
 import GoogleProvider from "../Shared/GoogleProvider/GoogleProvider";
 
 const SignUp = () => {
   const { emailAndPasswordSignUp, updateUserProfile } = useContext(AuthContext);
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -24,6 +25,7 @@ const SignUp = () => {
         updateUserProfile(userInfo)
           .then(() => {
             saveUser(data.name, data.email, data.role);
+            navigate("/");
           })
           .catch((e) => console.log(e));
         console.log(user);
