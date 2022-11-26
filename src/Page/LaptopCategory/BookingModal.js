@@ -1,10 +1,13 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
 import { AuthContext } from "../../contexts/AuthProvider";
 
-const BookingModal = ({ categoryInfo }) => {
-  const [bookedInfo, setBookedInfo] = useState(false);
+const BookingModal = ({
+  categoryInfo,
+  updateBooked,
+  bookedInfo,
+  setBookedInfo,
+}) => {
   const { user } = useContext(AuthContext);
   const { _id, laptop_img, laptop_name, resale_price } = categoryInfo;
   const {
@@ -34,30 +37,11 @@ const BookingModal = ({ categoryInfo }) => {
       .then((data) => {
         console.log(data);
         if (bookedInfo) {
-          updateBooked(_id, bookedInfo);
+          updateBooked(_id, bookedInfo, laptop_name);
         }
       })
       .catch((e) => console.log(e));
     e.target.reset();
-  };
-
-  const updateBooked = (id, booked) => {
-    const bookedDoc = {
-      booked,
-    };
-    fetch(`http://localhost:5000/booked/${id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(bookedDoc),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        toast.success(`${laptop_name} successfully Booked`);
-      })
-      .catch((e) => console.log(e));
   };
 
   const handleBookedInfo = () => {
@@ -77,6 +61,7 @@ const BookingModal = ({ categoryInfo }) => {
           </label>
           <h3 className="text-xl font-bold text-blue-900">Booking Form</h3>
           <form onSubmit={handleSubmit(handleBooking)}>
+            {/* ----------user name---------- */}
             <div className="form-control w-full max-w-lg">
               <label className="label">
                 <span className="label-text">User Name</span>
@@ -88,6 +73,9 @@ const BookingModal = ({ categoryInfo }) => {
                 defaultValue={user?.displayName}
                 disabled
               />
+
+              {/* ----------user email---------- */}
+
               <label className="label">
                 <span className="label-text">User Email</span>
               </label>
@@ -99,6 +87,9 @@ const BookingModal = ({ categoryInfo }) => {
                 defaultValue={user?.email}
                 disabled
               />
+
+              {/* ----------laptop name---------- */}
+
               <label className="label">
                 <span className="label-text">Laptop Name</span>
               </label>
@@ -109,6 +100,9 @@ const BookingModal = ({ categoryInfo }) => {
                 defaultValue={laptop_name}
                 disabled
               />
+
+              {/* ----------laptop price---------- */}
+
               <label className="label">
                 <span className="label-text">Laptop Price</span>
               </label>
@@ -119,6 +113,9 @@ const BookingModal = ({ categoryInfo }) => {
                 defaultValue={resale_price}
                 disabled
               />
+
+              {/* ----------phone number---------- */}
+
               <label className="label">
                 <span className="label-text">Phone Number</span>
               </label>
@@ -135,6 +132,9 @@ const BookingModal = ({ categoryInfo }) => {
                   {errors.phoneNumber?.message}
                 </p>
               )}
+
+              {/* ----------meeting address---------- */}
+
               <label className="label">
                 <span className="label-text">Meeting Address</span>
               </label>
@@ -152,12 +152,17 @@ const BookingModal = ({ categoryInfo }) => {
                 </p>
               )}
             </div>
+
+            {/* ----------submit button---------- */}
+
             <button
               onClick={handleBookedInfo}
               type="submit"
               className="max-w-lg w-full btn btn-primary mt-5"
             >
-              <label htmlFor="booking-modal">Submit</label>
+              <label htmlFor="booking-modal" className="hover:cursor-pointer">
+                Submit
+              </label>
             </button>
           </form>
         </div>
