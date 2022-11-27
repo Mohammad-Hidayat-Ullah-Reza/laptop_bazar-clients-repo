@@ -1,8 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useState } from "react";
+import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
 import AllBuyerTableRow from "./AllBuyerTableRow";
 
 const AllBuyers = () => {
+  const [id, setId] = useState("");
+
   const { data: buyers = [], refetch } = useQuery({
     queryKey: ["buyers"],
     queryFn: async () => {
@@ -11,6 +14,22 @@ const AllBuyers = () => {
       return data;
     },
   });
+
+  const handleDeleteBuyer = () => {
+    fetch(`http://localhost:5000/users`, {
+      method: "DELETE",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ id }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        refetch();
+      })
+      .catch((e) => console.log(e));
+  };
   return (
     <div className="overflow-x-auto m-10">
       <table className="table w-full">
@@ -30,10 +49,14 @@ const AllBuyers = () => {
               key={buyer._id}
               buyer={buyer}
               i={i}
+              setId={setId}
             ></AllBuyerTableRow>
           ))}
         </tbody>
       </table>
+      <ConfirmationModal
+        handleDeleteBuyer={handleDeleteBuyer}
+      ></ConfirmationModal>
     </div>
   );
 };

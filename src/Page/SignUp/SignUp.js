@@ -162,10 +162,7 @@ const SignUp = () => {
                 </button>
               </div>
             </form>
-            <GoogleProvider
-              value={"SIGN UP"}
-              saveUser={saveUser}
-            ></GoogleProvider>
+            <GoogleProvider value={"SIGN UP"}></GoogleProvider>
           </div>
         </div>
       </div>

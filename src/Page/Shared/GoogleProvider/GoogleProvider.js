@@ -8,8 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 
 const providerGoogle = new GoogleAuthProvider();
 
-const GoogleProvider = ({ value, saveUser, from }) => {
-  const [foundUser, setFoundUser] = useState(false);
+const GoogleProvider = ({ value, from }) => {
   const { popUpSignIn } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -49,6 +48,22 @@ const GoogleProvider = ({ value, saveUser, from }) => {
             saveUser(user.displayName, user.email, buyer);
           }
         }
+      })
+      .catch((e) => console.log(e));
+  };
+
+  const saveUser = (name, email, role) => {
+    const user = { name, email, role };
+    fetch("http://localhost:5000/users", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
       })
       .catch((e) => console.log(e));
   };
