@@ -1,16 +1,27 @@
 import { GoogleAuthProvider } from "firebase/auth";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../../../contexts/AuthProvider";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 
 const providerGoogle = new GoogleAuthProvider();
 
 const GoogleProvider = ({ value, saveUser, from }) => {
+  const [foundUser, setFoundUser] = useState(false);
   const { popUpSignIn } = useContext(AuthContext);
   const navigate = useNavigate();
-  console.log(from);
+
+  // const { data: buyers = [] } = useQuery({
+  //   queryKey: ["buyers"],
+  //   queryFn: async () => {
+  //     const res = await fetch(`http://localhost:5000/users/buyer`);
+  //     const data = await res.json();
+  //     return data;
+  //   },
+  // });
+
   const handleGoogleSignIn = () => {
     popUpSignIn(providerGoogle)
       .then((result) => {
@@ -18,9 +29,7 @@ const GoogleProvider = ({ value, saveUser, from }) => {
         console.log(user);
         toast.success(`${value} WITH GOOGLE SUCCESSFUL`);
         const buyer = "buyer";
-        if (saveUser) {
-          saveUser(user.displayName, user.email, buyer);
-        }
+        handlefindUser(user.email, user, buyer);
         if (value === "SIGN UP") {
           navigate("/");
         } else {
@@ -29,6 +38,21 @@ const GoogleProvider = ({ value, saveUser, from }) => {
       })
       .catch((e) => console.log(e));
   };
+
+  const handlefindUser = (email, user, buyer) => {
+    fetch(`http://localhost:5000/users/buyer/${email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (!data.length > 0) {
+          if (saveUser) {
+            saveUser(user.displayName, user.email, buyer);
+          }
+        }
+      })
+      .catch((e) => console.log(e));
+  };
+
   return (
     <div>
       <div className="divider">OR</div>

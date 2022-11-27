@@ -82,11 +82,11 @@ const SignUp = () => {
                 </label>
                 <select
                   {...register("role", { required: true })}
-                  defaultValue={"Buyer"}
+                  defaultValue={"buyer"}
                   className="select select-bordered"
                 >
-                  <option>Buyer</option>
-                  <option>Seller</option>
+                  <option>buyer</option>
+                  <option>seller</option>
                 </select>
               </div>
 
