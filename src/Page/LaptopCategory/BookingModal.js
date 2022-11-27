@@ -16,13 +16,16 @@ const BookingModal = ({
     formState: { errors },
   } = useForm();
 
+  //posts info in the fakeMyOrders collection
   const handleBooking = (data, e) => {
-    console.log(data);
     const myOrdersInfo = {
+      buyerName: user.displayName,
+      buyerEmail: user.email,
       buyerPhoneNumber: data.phoneNumber,
       meetingAddress: data.meetingAddress,
       laptop_img,
       laptop_name,
+      laptop_id: _id,
       resale_price,
       payment_status: false,
     };
@@ -154,13 +157,16 @@ const BookingModal = ({
             </div>
 
             {/* ----------submit button---------- */}
-
             <button
               onClick={handleBookedInfo}
               type="submit"
-              className="max-w-lg w-full btn btn-primary mt-5"
+              className="max-w-lg w-full"
             >
-              <label htmlFor="booking-modal" className="hover:cursor-pointer">
+              <label
+                onClick={handleBookedInfo}
+                htmlFor="booking-modal"
+                className="hover:cursor-pointer max-w-lg w-full btn btn-primary mt-5"
+              >
                 Submit
               </label>
             </button>

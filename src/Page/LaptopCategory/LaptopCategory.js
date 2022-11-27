@@ -1,18 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useContext, useState } from "react";
 import { useLoaderData } from "react-router-dom";
-import { AuthContext } from "../../contexts/AuthProvider";
 import LaptopCard from "./LaptopCard";
 import BookingModal from "./BookingModal";
 import toast from "react-hot-toast";
 
 const LaptopCategory = () => {
-  //   const { categoryName } = useContext(AuthContext);
   const [categoryInfo, setCategoryInfo] = useState("");
   const [bookedInfo, setBookedInfo] = useState(false);
+  const [refetchInfo, setRefetchInfo] = useState("");
   const loaderCategories = useLoaderData();
 
   const categoryName = loaderCategories[0].category;
+
   const { data: categories = [], refetch } = useQuery({
     queryKey: ["categories"],
     queryFn: async () => {
@@ -24,7 +24,7 @@ const LaptopCategory = () => {
     },
   });
 
-  //   updateBooked updates the info that user has booked this laptop
+  //   updateBooked updates the info in the allLaptop collection that user has booked this laptop
   const updateBooked = (id, booked, laptop_name) => {
     const bookedDoc = {
       booked,

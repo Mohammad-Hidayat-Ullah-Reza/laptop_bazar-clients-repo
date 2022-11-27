@@ -1,7 +1,13 @@
+import { useQuery } from "@tanstack/react-query";
+import { useContext, useEffect, useState } from "react";
 import { BsCheckCircleFill } from "react-icons/bs";
+import { AuthContext } from "../../contexts/AuthProvider";
 
 const LaptopCard = ({ categoryDetails, setCategoryInfo }) => {
+  const { user } = useContext(AuthContext);
+  const [disableButton, setDisableButton] = useState(null);
   const {
+    _id,
     laptop_img,
     laptop_name,
     location,
@@ -14,18 +20,42 @@ const LaptopCard = ({ categoryDetails, setCategoryInfo }) => {
     booked,
   } = categoryDetails;
 
+  //checks which laptop did this user booked
+  const { data: userOrdersInfo, refetch } = useQuery({
+    queryKey: ["userOrdersInfo"],
+    queryFn: async () => {
+      const res = await fetch(
+        `http://localhost:5000/myOrders?buyerEmail=${user.email}`
+      );
+      const data = await res.json();
+      return data;
+    },
+  });
+
   const handleCategoryInfo = () => {
     setCategoryInfo(categoryDetails);
   };
 
+  useEffect(() => {
+    if (userOrdersInfo) {
+      const findLaptop = userOrdersInfo.find((u) => u.laptop_id === _id);
+      if (findLaptop) {
+        setDisableButton(findLaptop._id);
+      } else {
+        setDisableButton(null);
+      }
+    }
+  }, [_id, userOrdersInfo]);
+
   return (
-    <div className={booked ? "hidden" : "block"}>
+    <div>
       <div className="card card-compact w-96 bg-base-100 shadow-xl">
         <figure>
           <img src={laptop_img} alt="Shoes" />
         </figure>
         <div className="card-body gap-0">
           <h2 className="card-title">{laptop_name}</h2>
+          {/* <p>{userOrdersInfo?.laptop_id === _id ? "disable" : "able"}</p> */}
           <p>
             <small>Location: {location}</small>
           </p>
@@ -46,6 +76,7 @@ const LaptopCard = ({ categoryDetails, setCategoryInfo }) => {
               onClick={handleCategoryInfo}
               htmlFor="booking-modal"
               className="btn btn-primary"
+              {...(disableButton && { disabled: true })}
             >
               Book Now
             </label>
