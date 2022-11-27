@@ -1,6 +1,6 @@
 import React from "react";
 
-const ConfirmationModal = ({ handleDeleteBuyer }) => {
+const ConfirmationModal = ({ handleDeleteSeller }) => {
   return (
     <>
       <input
@@ -11,15 +11,11 @@ const ConfirmationModal = ({ handleDeleteBuyer }) => {
       <div className="modal">
         <div className="modal-box">
           <h3 className="font-bold text-lg">
-            Congratulations random Internet user!
+            Are you sure you want to delete this user?
           </h3>
-          <p className="py-4">
-            You've been selected for a chance to get one year of subscription to
-            use Wikipedia for free!
-          </p>
           <div className="modal-action">
             <button
-              onClick={() => handleDeleteBuyer()}
+              onClick={() => handleDeleteSeller()}
               className="btn btn-primary p-0"
             >
               <label

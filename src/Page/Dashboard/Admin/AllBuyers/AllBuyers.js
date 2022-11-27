@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
 import AllBuyerTableRow from "./AllBuyerTableRow";
 
@@ -26,6 +27,8 @@ const AllBuyers = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        toast.success("successfully deleted");
+        setId("");
         refetch();
       })
       .catch((e) => console.log(e));
