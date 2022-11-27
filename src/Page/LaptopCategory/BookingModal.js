@@ -83,7 +83,7 @@ const BookingModal = ({
                 <span className="label-text">User Email</span>
               </label>
               <input
-                type="text"
+                type="email"
                 name="email"
                 placeholder="user email"
                 className="input input-bordered w-full max-w-lg"
@@ -126,7 +126,7 @@ const BookingModal = ({
                 {...register("phoneNumber", {
                   required: "Phone number is required",
                 })}
-                type="text"
+                type="number"
                 placeholder="phone number"
                 className="input input-bordered w-full max-w-lg"
               />

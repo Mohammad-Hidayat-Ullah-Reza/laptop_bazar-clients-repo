@@ -12,7 +12,7 @@ const Navbar = () => {
       .catch((e) => console.log(e));
   };
   return (
-    <div className="navbar bg-base-100 px-10">
+    <div className="navbar bg-base-100 md:px-10">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -51,23 +51,34 @@ const Navbar = () => {
                   <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
                 </svg>
               </Link>
-              <ul className="p-2">
+              <ul className="p-2 bg-base-100">
                 <li>
-                  <Link>Asus</Link>
+                  <Link to="/category/casual">Casual Laptop</Link>
                 </li>
                 <li>
-                  <Link>Dell</Link>
+                  <Link to="/category/gaming">Gaming Laptop</Link>
                 </li>
                 <li>
-                  <Link>HP</Link>
+                  <Link to="/category/premium">Premium Laptop</Link>
                 </li>
               </ul>
             </li>
             <li>
-              <Link>Blog</Link>
+              <Link to="/blog">Blog</Link>
             </li>
             <li>
-              <Link>Dashboard</Link>
+              <Link to="/dashboard">Dashboard</Link>
+            </li>
+            <li className="mt-3 text-white lg:hidden">
+              {user?.uid ? (
+                <button onClick={handleLogOut} className="btn btn-primary">
+                  Log Out
+                </button>
+              ) : (
+                <Link to="/login" className="btn btn-primary">
+                  Log In
+                </Link>
+              )}
             </li>
           </ul>
         </div>
@@ -94,15 +105,15 @@ const Navbar = () => {
                 <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
               </svg>
             </Link>
-            <ul className="p-2">
+            <ul className="p-2 bg-base-100">
               <li>
-                <Link>Asus</Link>
+                <Link to="/category/casual">Casual Laptop</Link>
               </li>
               <li>
-                <Link>Dell</Link>
+                <Link to="/category/gaming">Gaming Laptop</Link>
               </li>
               <li>
-                <Link>HP</Link>
+                <Link to="/category/premium">Premium Laptop</Link>
               </li>
             </ul>
           </li>
@@ -110,11 +121,11 @@ const Navbar = () => {
             <Link to="/blog">Blog</Link>
           </li>
           <li>
-            <Link to="dashboard">Dahsboard</Link>
+            <Link to="/dashboard">Dashboard</Link>
           </li>
         </ul>
       </div>
-      <div className="navbar-end">
+      <div className="navbar-end hidden lg:flex">
         {user?.uid ? (
           <button onClick={handleLogOut} className="btn btn-primary">
             Log Out

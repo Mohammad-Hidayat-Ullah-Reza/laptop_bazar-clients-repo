@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import LaptopCard from "./LaptopCard";
 import BookingModal from "./BookingModal";
@@ -8,7 +8,6 @@ import toast from "react-hot-toast";
 const LaptopCategory = () => {
   const [categoryInfo, setCategoryInfo] = useState("");
   const [bookedInfo, setBookedInfo] = useState(false);
-  const [refetchInfo, setRefetchInfo] = useState("");
   const loaderCategories = useLoaderData();
 
   const categoryName = loaderCategories[0].category;
