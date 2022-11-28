@@ -83,12 +83,13 @@ const MyProducts = () => {
               <td>{laptop.laptop_name}</td>
               <td>{laptop.category}</td>
               <td>{laptop.resale_price} Tk</td>
-              <td>{laptop.sales_status ? "sold" : "unsold"}</td>
+              <td>{laptop.sales_status}</td>
               <th className="flex gap-2 items-center">
                 <button
                   onClick={() => handleAdvertiseLaptop(laptop._id)}
                   className="btn btn-primary btn-sm uppercase"
                   {...(laptop.advertise === "true" && { disabled: true })}
+                  {...(laptop.sales_status === "sold" && { disabled: true })}
                 >
                   Advertise
                 </button>

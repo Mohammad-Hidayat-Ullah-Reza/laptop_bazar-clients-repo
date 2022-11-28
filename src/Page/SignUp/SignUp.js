@@ -1,18 +1,25 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 import toast from "react-hot-toast";
 import GoogleProvider from "../Shared/GoogleProvider/GoogleProvider";
+import useToken from "../../hooks/useToken";
 
 const SignUp = () => {
   const { emailAndPasswordSignUp, updateUserProfile } = useContext(AuthContext);
+  const [createdUserEmail, setCreatedUserEmail] = useState("");
+  const [token] = useToken(createdUserEmail);
   const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  if (token) {
+    navigate("/");
+  }
 
   const handleSignUp = (data, e) => {
     emailAndPasswordSignUp(data.email, data.password)
@@ -25,7 +32,6 @@ const SignUp = () => {
         updateUserProfile(userInfo)
           .then(() => {
             saveUser(data.name, data.email, data.role);
-            navigate("/");
           })
           .catch((e) => console.log(e));
         console.log(user);
@@ -45,7 +51,7 @@ const SignUp = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        setCreatedUserEmail(email);
       })
       .catch((e) => console.log(e));
   };

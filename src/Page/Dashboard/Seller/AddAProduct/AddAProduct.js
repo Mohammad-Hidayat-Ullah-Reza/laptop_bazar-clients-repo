@@ -45,7 +45,7 @@ const AddAProduct = () => {
       seller_name: user.displayName,
       seller_email: user.email,
       seller_verified: false,
-      salesStatus: false,
+      salesStatus: "unsold",
       advertise: "true",
     };
     console.log(addedLaptopInfo);

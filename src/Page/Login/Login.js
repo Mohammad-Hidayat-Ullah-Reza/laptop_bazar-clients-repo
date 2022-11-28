@@ -1,16 +1,24 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 import toast from "react-hot-toast";
 import GoogleProvider from "../Shared/GoogleProvider/GoogleProvider";
+import useToken from "../../hooks/useToken";
 
 const Login = () => {
+  const [loginUserEmail, setLoginUserEmail] = useState("");
+  const [token] = useToken(loginUserEmail);
   const { emailAndPasswordLogIn } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
 
   const from = location.state?.from?.pathname || "/";
+
+  if (token) {
+    navigate(from, { replace: true });
+  }
+
   const {
     register,
     handleSubmit,
@@ -21,9 +29,8 @@ const Login = () => {
     emailAndPasswordLogIn(data.email, data.password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
+        setLoginUserEmail(user.email);
         toast.success("Successfully Logged In");
-        navigate(from, { replace: true });
         e.target.reset();
       })
       .catch((e) => console.log(e));

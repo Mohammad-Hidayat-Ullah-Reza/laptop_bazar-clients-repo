@@ -17,6 +17,7 @@ import MyBuyers from "../../Page/Dashboard/Seller/MyBuyers/MyBuyers";
 import AllBuyers from "../../Page/Dashboard/Admin/AllBuyers/AllBuyers";
 import AllSellers from "../../Page/Dashboard/Admin/AllSellers/AllSellers";
 import Payment from "../../Page/Dashboard/Buyer/Payment/Payment";
+import AdminRoute from "../AdminRoute/AdminRoute";
 
 export const routes = createBrowserRouter([
   {
@@ -89,7 +90,11 @@ export const routes = createBrowserRouter([
       },
       {
         path: "/dashboard/allSellers",
-        element: <AllSellers></AllSellers>,
+        element: (
+          <AdminRoute>
+            <AllSellers></AllSellers>
+          </AdminRoute>
+        ),
       },
     ],
   },
