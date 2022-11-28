@@ -1,14 +1,19 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../../contexts/AuthProvider";
 
 const AddAProduct = () => {
   const { user } = useContext(AuthContext);
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const navigation = useNavigate();
 
+  //this function handles updating laptop info in the database
   const handleAddLaptop = (data, e) => {
     const {
       conditionType,
@@ -24,6 +29,7 @@ const AddAProduct = () => {
     } = data;
     const date = new Date().toLocaleDateString("en-uk");
 
+    //required info of laptop
     const addedLaptopInfo = {
       conditionType,
       category: laptopCategory,
@@ -70,19 +76,22 @@ const AddAProduct = () => {
       >
         <div className="form-control w-full max-w-xs">
           {/* ---------laptop name--------- */}
-          <label className="label">
+          <label className="label mt-2">
             <span className="label-text">Laptop name</span>
           </label>
           <input
             {...register("laptopName", { required: "laptop name is required" })}
             type="text"
             placeholder="laptop name"
-            className="input input-bordered w-full max-w-xs mb-3"
+            className="input input-bordered w-full max-w-xs"
           />
+          {errors.laptopName && (
+            <p className="text-red-600 mt-2">{errors.laptopName?.message}</p>
+          )}
 
           {/* ---------laptop image--------- */}
 
-          <label className="label">
+          <label className="label mt-2">
             <span className="label-text">Laptop image</span>
           </label>
           <input
@@ -91,12 +100,15 @@ const AddAProduct = () => {
             })}
             type="text"
             placeholder="laptop image"
-            className="input input-bordered w-full max-w-xs mb-3"
+            className="input input-bordered w-full max-w-xs"
           />
+          {errors.laptopImage && (
+            <p className="text-red-600 mt-2">{errors.laptopImage?.message}</p>
+          )}
 
           {/* ---------laptop category--------- */}
 
-          <label className="label">
+          <label className="label mt-2">
             <span className="label-text">Laptop Category</span>
           </label>
           <select
@@ -109,10 +121,15 @@ const AddAProduct = () => {
             <option>gaming</option>
             <option>premium</option>
           </select>
+          {errors.laptopCategory && (
+            <p className="text-red-600 mt-2">
+              {errors.laptopCategory?.message}
+            </p>
+          )}
 
           {/* ---------resale price--------- */}
 
-          <label className="label">
+          <label className="label mt-2">
             <span className="label-text">Resale price</span>
           </label>
           <input
@@ -121,12 +138,15 @@ const AddAProduct = () => {
             })}
             type="number"
             placeholder="resale price"
-            className="input input-bordered w-full max-w-xs mb-3"
+            className="input input-bordered w-full max-w-xs"
           />
+          {errors.resalePrice && (
+            <p className="text-red-600 mt-2">{errors.resalePrice?.message}</p>
+          )}
 
           {/* ---------original price--------- */}
 
-          <label className="label">
+          <label className="label mt-2">
             <span className="label-text">Original price</span>
           </label>
           <input
@@ -135,12 +155,15 @@ const AddAProduct = () => {
             })}
             type="number"
             placeholder="original price"
-            className="input input-bordered w-full max-w-xs mb-3"
+            className="input input-bordered w-full max-w-xs"
           />
+          {errors.originalPrice && (
+            <p className="text-red-600 mt-2">{errors.originalPrice?.message}</p>
+          )}
 
           {/* ---------condition type--------- */}
 
-          <label className="label">
+          <label className="label mt-2">
             <span className="label-text">Condition type</span>
           </label>
           <select
@@ -153,6 +176,9 @@ const AddAProduct = () => {
             <option>good</option>
             <option>fair</option>
           </select>
+          {errors.conditionType && (
+            <p className="text-red-600 mt-2">{errors.conditionType?.message}</p>
+          )}
 
           {/* ---------mobile number--------- */}
 
@@ -165,8 +191,11 @@ const AddAProduct = () => {
               required: "mobile number is required",
             })}
             placeholder="mobile number"
-            className="input input-bordered w-full max-w-xs mb-3"
+            className="input input-bordered w-full max-w-xs"
           />
+          {errors.mobileNumber && (
+            <p className="text-red-600 mt-2">{errors.mobileNumber?.message}</p>
+          )}
 
           {/* ---------location--------- */}
 
@@ -185,6 +214,9 @@ const AddAProduct = () => {
             <option>rangpur</option>
             <option>rajshahi</option>
           </select>
+          {errors.location && (
+            <p className="text-red-600 mt-2">{errors.location?.message}</p>
+          )}
 
           {/* ---------years of purchase--------- */}
 
@@ -197,8 +229,11 @@ const AddAProduct = () => {
             })}
             type="number"
             placeholder="years of purchase"
-            className="input input-bordered w-full max-w-xs mb-3"
+            className="input input-bordered w-full max-w-xs"
           />
+          {errors.usageTime && (
+            <p className="text-red-600 mt-2">{errors.usageTime?.message}</p>
+          )}
 
           {/* ---------laptop description--------- */}
 
@@ -212,6 +247,9 @@ const AddAProduct = () => {
             className="textarea textarea-bordered h-24"
             placeholder="laptop description"
           ></textarea>
+          {errors.laptopDesc && (
+            <p className="text-red-600 mt-2">{errors.laptopDesc?.message}</p>
+          )}
 
           <div className="form-control mt-6">
             <button className="btn btn-primary">Add Laptop</button>
