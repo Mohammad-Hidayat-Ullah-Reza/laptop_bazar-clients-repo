@@ -27,6 +27,6 @@
 
 ## ADMIN INFO:
 
-### ADMIN UID: admin1
+### adminEmail: admin1@admin.com
 
-### ADMIN PASSWORD: 1234A@a.
+### adminPassword: 1234A@a
