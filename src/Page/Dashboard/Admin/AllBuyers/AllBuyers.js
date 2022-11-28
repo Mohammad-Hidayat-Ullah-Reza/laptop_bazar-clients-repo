@@ -18,6 +18,10 @@ const AllBuyers = () => {
     },
   });
 
+  const handleSetId = (id) => {
+    setId(id);
+  };
+
   const handleDeleteBuyer = () => {
     fetch(`https://laptop-bazar-server-one.vercel.app/users`, {
       method: "DELETE",
@@ -54,7 +58,7 @@ const AllBuyers = () => {
               key={buyer._id}
               buyer={buyer}
               i={i}
-              setId={setId}
+              handleSetId={handleSetId}
             ></AllBuyerTableRow>
           ))}
         </tbody>

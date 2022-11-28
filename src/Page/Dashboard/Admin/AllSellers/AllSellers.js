@@ -5,7 +5,7 @@ import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
 import AllSellersTableRow from "./AllSellersTableRow";
 
 const AllSellers = () => {
-  const [id, setId] = useState("");
+  const [id, setId] = useState(null);
   const [verificationId, setVerificationId] = useState("");
 
   const { data: sellers = [], refetch } = useQuery({
@@ -31,7 +31,7 @@ const AllSellers = () => {
       .then((data) => {
         console.log(data);
         toast.success("successfully deleted");
-        setId("");
+        setId(null);
         refetch();
       })
       .catch((e) => console.log(e));
@@ -61,6 +61,7 @@ const AllSellers = () => {
       method: "PUT",
       headers: {
         "content-type": "application/json",
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
       },
       body: JSON.stringify({ verified: "true" }),
     })

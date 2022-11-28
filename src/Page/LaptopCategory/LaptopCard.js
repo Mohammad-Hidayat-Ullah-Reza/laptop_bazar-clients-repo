@@ -16,7 +16,7 @@ const LaptopCard = ({ categoryDetails, setCategoryInfo }) => {
     location,
     resale_price,
     original_price,
-    usage_time,
+    usage_Time,
     post_date,
     seller_name,
     seller_verified,
@@ -52,7 +52,7 @@ const LaptopCard = ({ categoryDetails, setCategoryInfo }) => {
 
   return (
     <div>
-      <div className="card card-compact max-w-md bg-base-100 shadow-xl">
+      <div className="card card-compact max-w-md h-full bg-base-100 shadow-xl">
         <figure>
           <img src={laptop_img} alt="Shoes" />
         </figure>
@@ -65,16 +65,18 @@ const LaptopCard = ({ categoryDetails, setCategoryInfo }) => {
           <p>
             <small>Post Date: {post_date}</small>
           </p>
-          <p className="my-1 break-all">Resale Price: {resale_price}</p>
-          <p className="my-1 break-all">Original Price: {original_price}</p>
-          <p className="my-1 break-all">Years of Use: {usage_time}</p>
+          <p className="my-1 break-all">Resale Price: {resale_price} Tk.</p>
+          <p className="my-1 break-all">Original Price: {original_price} Tk.</p>
+          <p className="my-1 break-all">Years of Use: {usage_Time}</p>
           <p className="my-1 flex items-center gap-1 break-all">
             Seller: {seller_name}{" "}
             {seller_verified === "true" && (
               <BsCheckCircleFill className="text-blue-900"></BsCheckCircleFill>
             )}{" "}
           </p>
-          <p className="my-1 break-all">Original Price: {laptopDesc}</p>
+          <p className="my-1 break-all">
+            Original Price: {laptopDesc.slice(0, 200)}...
+          </p>
           <div className="flex flex-col gap-2 mt-5">
             {setCategoryInfo ? (
               <>

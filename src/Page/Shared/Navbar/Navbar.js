@@ -41,7 +41,7 @@ const Navbar = () => {
               <Link to="/">Home</Link>
             </li>
             <li tabIndex={0}>
-              <Link className="justify-between">
+              <Link to="/" className="justify-between">
                 Categories
                 <svg
                   className="fill-current"
@@ -53,24 +53,15 @@ const Navbar = () => {
                   <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
                 </svg>
               </Link>
-              <ul className="p-2 bg-base-100">
-                <li>
-                  <Link to="/category/casual">Casual Laptop</Link>
-                </li>
-                <li>
-                  <Link to="/category/gaming">Gaming Laptop</Link>
-                </li>
-                <li>
-                  <Link to="/category/premium">Premium Laptop</Link>
-                </li>
-              </ul>
             </li>
             <li>
               <Link to="/blog">Blog</Link>
             </li>
-            <li>
-              <Link to="/dashboard">Dashboard</Link>
-            </li>
+            {user?.uid && (
+              <li>
+                <Link to="/dashboard">Dashboard</Link>
+              </li>
+            )}
             <li className="mt-3 text-white lg:hidden">
               {user?.uid ? (
                 <button onClick={handleLogOut} className="btn btn-primary">
@@ -95,7 +86,7 @@ const Navbar = () => {
             <Link to="/">Home</Link>
           </li>
           <li tabIndex={0}>
-            <Link>
+            <Link to="/">
               Categories
               <svg
                 className="fill-current"
@@ -107,24 +98,15 @@ const Navbar = () => {
                 <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
               </svg>
             </Link>
-            <ul className="p-2 bg-base-100">
-              <li>
-                <Link to="/category/casual">Casual Laptop</Link>
-              </li>
-              <li>
-                <Link to="/category/gaming">Gaming Laptop</Link>
-              </li>
-              <li>
-                <Link to="/category/premium">Premium Laptop</Link>
-              </li>
-            </ul>
           </li>
           <li>
             <Link to="/blog">Blog</Link>
           </li>
-          <li>
-            <Link to="/dashboard">Dashboard</Link>
-          </li>
+          {user?.uid && (
+            <li>
+              <Link to="/dashboard">Dashboard</Link>
+            </li>
+          )}
         </ul>
       </div>
       <div className="navbar-end hidden lg:flex">

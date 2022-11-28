@@ -21,12 +21,14 @@ const AdvertisedLaptops = () => {
           <h2 className="text-4xl text-blue-900 font-bold text-center mt-10 uppercase mb-7">
             Advertised Laptops
           </h2>
-          {advertisedLaptops.map((advertisedLaptop) => (
-            <LaptopCard
-              key={advertisedLaptop._id}
-              categoryDetails={advertisedLaptop}
-            ></LaptopCard>
-          ))}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+            {advertisedLaptops.map((advertisedLaptop) => (
+              <LaptopCard
+                key={advertisedLaptop._id}
+                categoryDetails={advertisedLaptop}
+              ></LaptopCard>
+            ))}
+          </div>
         </div>
       )}
     </>

@@ -1,6 +1,6 @@
 import React from "react";
 
-const AllBuyerTableRow = ({ buyer, i, setId }) => {
+const AllBuyerTableRow = ({ buyer, i, handleSetId }) => {
   const { _id, name, email } = buyer;
   return (
     <tr>
@@ -8,7 +8,10 @@ const AllBuyerTableRow = ({ buyer, i, setId }) => {
       <td>{name}</td>
       <td>{email}</td>
       <td>
-        <button onClick={setId(_id)} className="btn bg-red-700 p-0 btn-sm">
+        <button
+          onClick={handleSetId(_id)}
+          className="btn bg-red-700 p-0 btn-sm"
+        >
           <label
             htmlFor="deleteConfirmationModal"
             className="btn btn-sm btn-ghost uppercase w-full h-full"

@@ -88,27 +88,40 @@ const DashboardLayout = () => {
           <label htmlFor="my-drawer-3" className="drawer-overlay"></label>
           <ul className="menu p-4 w-80 bg-base-100">
             {/* <!-- Sidebar content here --> */}
-            <li>
-              <Link to="/dashboard/myOrders">My Orders</Link>
-            </li>
-            <li>
-              <Link to="/dashboard/myWishlist">My Wishlist</Link>
-            </li>
-            <li>
-              <Link to="/dashboard/addAProduct">Add A Product</Link>
-            </li>
-            <li>
-              <Link to="/dashboard/myProducts">My Products</Link>
-            </li>
-            <li>
-              <Link to="/dashboard/myBuyers">My Buyers</Link>
-            </li>
-            <li>
-              <Link to="/dashboard/allBuyers">All Buyers</Link>
-            </li>
-            <li>
-              <Link to="/dashboard/allSellers">All Sellers</Link>
-            </li>
+            {!isAdmin && !isSeller && (
+              <>
+                <li>
+                  <Link to="/dashboard/myOrders">My Orders</Link>
+                </li>
+                <li>
+                  <Link to="/dashboard/myWishlist">My Wishlist</Link>
+                </li>
+              </>
+            )}
+
+            {isSeller && (
+              <>
+                <li>
+                  <Link to="/dashboard/addAProduct">Add A Product</Link>
+                </li>
+                <li>
+                  <Link to="/dashboard/myProducts">My Products</Link>
+                </li>
+                <li>
+                  <Link to="/dashboard/myBuyers">My Buyers</Link>
+                </li>
+              </>
+            )}
+            {isAdmin && (
+              <>
+                <li>
+                  <Link to="/dashboard/allBuyers">All Buyers</Link>
+                </li>
+                <li>
+                  <Link to="/dashboard/allSellers">All Sellers</Link>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </div>

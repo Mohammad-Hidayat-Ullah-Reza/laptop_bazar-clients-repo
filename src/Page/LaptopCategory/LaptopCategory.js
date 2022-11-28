@@ -4,6 +4,7 @@ import { useLoaderData } from "react-router-dom";
 import LaptopCard from "./LaptopCard";
 import BookingModal from "./BookingModal";
 import toast from "react-hot-toast";
+import Loading from "../Shared/Loading/Loading";
 
 const LaptopCategory = () => {
   const [categoryInfo, setCategoryInfo] = useState("");
@@ -12,7 +13,11 @@ const LaptopCategory = () => {
 
   const categoryName = loaderCategories[0].category;
 
-  const { data: categories = [], refetch } = useQuery({
+  const {
+    data: categories = [],
+    refetch,
+    isLoading,
+  } = useQuery({
     queryKey: ["categories"],
     queryFn: async () => {
       const res = await fetch(
@@ -22,6 +27,10 @@ const LaptopCategory = () => {
       return data;
     },
   });
+
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
 
   //   updateBooked updates the info in the allLaptop collection that user has booked this laptop
   const updateBooked = (id, booked, laptop_name) => {
