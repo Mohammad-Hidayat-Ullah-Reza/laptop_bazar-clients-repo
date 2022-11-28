@@ -1,12 +1,6 @@
 import React from "react";
 
-const AllSellersTableRow = ({
-  seller,
-  i,
-  setId,
-  setVerificationId,
-  handleVerifySeller,
-}) => {
+const AllSellersTableRow = ({ seller, i, setId, handleVerifySeller }) => {
   const { _id, name, email, verified } = seller;
   return (
     <tr>
@@ -24,8 +18,7 @@ const AllSellersTableRow = ({
           </label>
         </button>
         <button
-          //   onClick={setVerificationId(_id)}
-          onClick={() => handleVerifySeller(_id)}
+          onClick={() => handleVerifySeller(_id, email)}
           className="btn bg-primary p-0 btn-sm"
           {...(verified && { disabled: true })}
         >

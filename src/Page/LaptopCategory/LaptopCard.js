@@ -12,6 +12,7 @@ const LaptopCard = ({ categoryDetails, setCategoryInfo }) => {
     category,
     laptop_img,
     laptop_name,
+    laptopDesc,
     location,
     resale_price,
     original_price,
@@ -27,7 +28,7 @@ const LaptopCard = ({ categoryDetails, setCategoryInfo }) => {
     queryKey: ["userOrdersInfo"],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/myOrders?buyerEmail=${user?.email}`
+        `https://laptop-bazar-server-one.vercel.app/myOrders?buyerEmail=${user?.email}`
       );
       const data = await res.json();
       return data;
@@ -51,7 +52,7 @@ const LaptopCard = ({ categoryDetails, setCategoryInfo }) => {
 
   return (
     <div>
-      <div className="card card-compact w-96 bg-base-100 shadow-xl">
+      <div className="card card-compact max-w-md bg-base-100 shadow-xl">
         <figure>
           <img src={laptop_img} alt="Shoes" />
         </figure>
@@ -69,10 +70,11 @@ const LaptopCard = ({ categoryDetails, setCategoryInfo }) => {
           <p className="my-1 break-all">Years of Use: {usage_time}</p>
           <p className="my-1 flex items-center gap-1 break-all">
             Seller: {seller_name}{" "}
-            {seller_verified && (
+            {seller_verified === "true" && (
               <BsCheckCircleFill className="text-blue-900"></BsCheckCircleFill>
             )}{" "}
           </p>
+          <p className="my-1 break-all">Original Price: {laptopDesc}</p>
           <div className="flex flex-col gap-2 mt-5">
             {setCategoryInfo ? (
               <>

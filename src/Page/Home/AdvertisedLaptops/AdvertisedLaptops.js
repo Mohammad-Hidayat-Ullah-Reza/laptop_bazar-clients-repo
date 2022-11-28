@@ -8,7 +8,7 @@ const AdvertisedLaptops = () => {
     queryKey: ["advertisedLaptops"],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/myProducts?advertise=true`
+        `https://laptop-bazar-server-one.vercel.app/myProducts?advertise=true`
       );
       const data = await res.json();
       return data;
@@ -18,7 +18,7 @@ const AdvertisedLaptops = () => {
     <>
       {advertisedLaptops.length > 0 && (
         <div className="p-10">
-          <h2 className="text-4xl text-blue-900 font-bold text-center mt-10 uppercase">
+          <h2 className="text-4xl text-blue-900 font-bold text-center mt-10 uppercase mb-7">
             Advertised Laptops
           </h2>
           {advertisedLaptops.map((advertisedLaptop) => (

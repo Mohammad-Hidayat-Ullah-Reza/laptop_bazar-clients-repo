@@ -49,7 +49,9 @@ export const routes = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/categories/${params.category_name}`),
+          fetch(
+            `https://laptop-bazar-server-one.vercel.app/categories/${params.category_name}`
+          ),
       },
     ],
   },

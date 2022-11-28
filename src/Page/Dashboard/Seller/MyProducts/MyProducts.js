@@ -11,7 +11,7 @@ const MyProducts = () => {
     queryKey: ["laptops"],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/allLaptops?email=${user?.email}`
+        `https://laptop-bazar-server-one.vercel.app/allLaptops?email=${user?.email}`
       );
       const data = await res.json();
       return data;
@@ -24,7 +24,7 @@ const MyProducts = () => {
 
   const handleDeleteLaptop = () => {
     if (laptopId) {
-      fetch(`http://localhost:5000/allLaptops`, {
+      fetch(`https://laptop-bazar-server-one.vercel.app/allLaptops`, {
         method: "DELETE",
         headers: {
           "content-type": "application/json",
@@ -44,7 +44,7 @@ const MyProducts = () => {
   };
 
   const handleAdvertiseLaptop = (id) => {
-    fetch(`http://localhost:5000/myProducts/${id}`, {
+    fetch(`https://laptop-bazar-server-one.vercel.app/myProducts/${id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -83,13 +83,12 @@ const MyProducts = () => {
               <td>{laptop.laptop_name}</td>
               <td>{laptop.category}</td>
               <td>{laptop.resale_price} Tk</td>
-              <td>{laptop.sales_status}</td>
+              <td>{laptop.salesStatus}</td>
               <th className="flex gap-2 items-center">
                 <button
                   onClick={() => handleAdvertiseLaptop(laptop._id)}
                   className="btn btn-primary btn-sm uppercase"
                   {...(laptop.advertise === "true" && { disabled: true })}
-                  {...(laptop.sales_status === "sold" && { disabled: true })}
                 >
                   Advertise
                 </button>

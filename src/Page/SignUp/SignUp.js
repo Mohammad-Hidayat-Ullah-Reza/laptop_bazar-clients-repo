@@ -42,7 +42,7 @@ const SignUp = () => {
 
   const saveUser = (name, email, role, verified = false) => {
     const user = { name, email, role, verified };
-    fetch("http://localhost:5000/users", {
+    fetch("https://laptop-bazar-server-one.vercel.app/users", {
       method: "POST",
       headers: {
         "content-type": "application/json",

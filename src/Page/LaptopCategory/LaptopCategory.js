@@ -16,7 +16,7 @@ const LaptopCategory = () => {
     queryKey: ["categories"],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/categories/${categoryName}`
+        `https://laptop-bazar-server-one.vercel.app/categories/${categoryName}`
       );
       const data = await res.json();
       return data;
@@ -28,7 +28,7 @@ const LaptopCategory = () => {
     const bookedDoc = {
       booked,
     };
-    fetch(`http://localhost:5000/booked/${id}`, {
+    fetch(`https://laptop-bazar-server-one.vercel.app/booked/${id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

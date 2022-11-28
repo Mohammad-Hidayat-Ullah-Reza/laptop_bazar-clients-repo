@@ -42,7 +42,18 @@ const DashboardLayout = () => {
               <ul className="menu menu-horizontal">
                 {/* <!-- Navbar menu content here --> */}
 
-                {isSeller ? (
+                {!isAdmin && !isSeller && (
+                  <>
+                    <li>
+                      <Link to="/dashboard/myOrders">My Orders</Link>
+                    </li>
+                    <li>
+                      <Link to="/dashboard/myWishlist">My Wishlist</Link>
+                    </li>
+                  </>
+                )}
+
+                {isSeller && (
                   <>
                     <li>
                       <Link to="/dashboard/addAProduct">Add A Product</Link>
@@ -52,15 +63,6 @@ const DashboardLayout = () => {
                     </li>
                     <li>
                       <Link to="/dashboard/myBuyers">My Buyers</Link>
-                    </li>
-                  </>
-                ) : (
-                  <>
-                    <li>
-                      <Link to="/dashboard/myOrders">My Orders</Link>
-                    </li>
-                    <li>
-                      <Link to="/dashboard/myWishlist">My Wishlist</Link>
                     </li>
                   </>
                 )}

@@ -29,7 +29,7 @@ const BookingModal = ({
       resale_price,
       payment_status: false,
     };
-    fetch("http://localhost:5000/myOrders", {
+    fetch("https://laptop-bazar-server-one.vercel.app/myOrders", {
       method: "POST",
       headers: {
         "content-type": "application/json",

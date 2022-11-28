@@ -46,10 +46,10 @@ const AddAProduct = () => {
       seller_email: user.email,
       seller_verified: false,
       salesStatus: "unsold",
-      advertise: "true",
+      advertise: "false",
     };
     console.log(addedLaptopInfo);
-    fetch(`http://localhost:5000/addLaptop`, {
+    fetch(`https://laptop-bazar-server-one.vercel.app/addLaptop`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

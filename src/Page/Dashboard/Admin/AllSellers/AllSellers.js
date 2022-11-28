@@ -11,14 +11,16 @@ const AllSellers = () => {
   const { data: sellers = [], refetch } = useQuery({
     queryKey: ["sellers"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/users/seller`);
+      const res = await fetch(
+        `https://laptop-bazar-server-one.vercel.app/users/seller`
+      );
       const data = await res.json();
       return data;
     },
   });
 
   const handleDeleteSeller = () => {
-    fetch(`http://localhost:5000/users`, {
+    fetch(`https://laptop-bazar-server-one.vercel.app/users`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json",
@@ -35,23 +37,37 @@ const AllSellers = () => {
       .catch((e) => console.log(e));
   };
 
-  const handleVerifySeller = (d) => {
+  const handleVerifySeller = (d, email) => {
     console.log(verificationId);
-    fetch(`http://localhost:5000/users/${d}`, {
+    fetch(`https://laptop-bazar-server-one.vercel.app/users/${d}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify({ verified: true }),
+      body: JSON.stringify({ verified: "true" }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount > 0) {
+          setVerificationId("");
+          verifySeller(email);
+        }
+      });
+  };
+
+  const verifySeller = (email) => {
+    fetch(`https://laptop-bazar-server-one.vercel.app/allLaptop/${email}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ verified: "true" }),
     })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
         toast.success("successfully verified seller");
-        if (data.modifiedCount > 0) {
-          setVerificationId("");
-        }
-        refetch();
       });
   };
 
@@ -76,7 +92,6 @@ const AllSellers = () => {
               seller={seller}
               i={i}
               setId={setId}
-              setVerificationId={setVerificationId}
               handleVerifySeller={handleVerifySeller}
             ></AllSellersTableRow>
           ))}

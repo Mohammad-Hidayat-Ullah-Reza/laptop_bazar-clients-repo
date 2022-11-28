@@ -37,7 +37,7 @@ const GoogleProvider = ({ value, from }) => {
   };
 
   const handlefindUser = (email, user, buyer) => {
-    fetch(`http://localhost:5000/users/buyer/${email}`)
+    fetch(`https://laptop-bazar-server-one.vercel.app/users/buyer/${email}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -53,7 +53,7 @@ const GoogleProvider = ({ value, from }) => {
 
   const saveUser = (name, email, role) => {
     const user = { name, email, role };
-    fetch("http://localhost:5000/users", {
+    fetch("https://laptop-bazar-server-one.vercel.app/users", {
       method: "POST",
       headers: {
         "content-type": "application/json",

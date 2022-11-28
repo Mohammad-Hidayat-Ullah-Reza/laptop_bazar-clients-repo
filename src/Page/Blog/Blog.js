@@ -6,7 +6,9 @@ const Blog = () => {
   const { data: blog = [] } = useQuery({
     queryKey: ["blog"],
     queryFn: () =>
-      fetch("http://localhost:5000/blog").then((res) => res.json()),
+      fetch("https://laptop-bazar-server-one.vercel.app/blog").then((res) =>
+        res.json()
+      ),
   });
 
   return (
