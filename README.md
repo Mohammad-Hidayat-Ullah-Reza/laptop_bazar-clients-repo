@@ -27,5 +27,6 @@
 
 ## ADMIN INFO:
 
-ADMIN UID: admin1
-ADMIN PASSWORD: 1234A@a.
+### ADMIN UID: admin1
+
+### ADMIN PASSWORD: 1234A@a.
