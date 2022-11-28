@@ -46,6 +46,7 @@ const AddAProduct = () => {
       seller_email: user.email,
       seller_verified: false,
       salesStatus: false,
+      advertise: "true",
     };
     console.log(addedLaptopInfo);
     fetch(`http://localhost:5000/addLaptop`, {
