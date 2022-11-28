@@ -2,11 +2,13 @@ import React, { useContext } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthProvider";
 import useAdmin from "../hooks/useAdmin";
+import useSeller from "../hooks/useSeller";
 import Navbar from "../Page/Shared/Navbar/Navbar";
 
 const DashboardLayout = () => {
   const { user } = useContext(AuthContext);
   const [isAdmin] = useAdmin(user?.email);
+  const [isSeller] = useSeller(user?.email);
 
   return (
     <div>
@@ -39,21 +41,30 @@ const DashboardLayout = () => {
             <div className="flex-none hidden lg:block">
               <ul className="menu menu-horizontal">
                 {/* <!-- Navbar menu content here --> */}
-                <li>
-                  <Link to="/dashboard/myOrders">My Orders</Link>
-                </li>
-                <li>
-                  <Link to="/dashboard/myWishlist">My Wishlist</Link>
-                </li>
-                <li>
-                  <Link to="/dashboard/addAProduct">Add A Product</Link>
-                </li>
-                <li>
-                  <Link to="/dashboard/myProducts">My Products</Link>
-                </li>
-                <li>
-                  <Link to="/dashboard/myBuyers">My Buyers</Link>
-                </li>
+
+                {isSeller ? (
+                  <>
+                    <li>
+                      <Link to="/dashboard/addAProduct">Add A Product</Link>
+                    </li>
+                    <li>
+                      <Link to="/dashboard/myProducts">My Products</Link>
+                    </li>
+                    <li>
+                      <Link to="/dashboard/myBuyers">My Buyers</Link>
+                    </li>
+                  </>
+                ) : (
+                  <>
+                    <li>
+                      <Link to="/dashboard/myOrders">My Orders</Link>
+                    </li>
+                    <li>
+                      <Link to="/dashboard/myWishlist">My Wishlist</Link>
+                    </li>
+                  </>
+                )}
+
                 {isAdmin && (
                   <>
                     <li>

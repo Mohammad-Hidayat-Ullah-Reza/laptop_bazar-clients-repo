@@ -5,35 +5,33 @@ import { AuthContext } from "../../../contexts/AuthProvider";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+import useToken from "../../../hooks/useToken";
 
 const providerGoogle = new GoogleAuthProvider();
 
 const GoogleProvider = ({ value, from }) => {
   const { popUpSignIn } = useContext(AuthContext);
+  const [createdGoogleUserEmail, setCreatedGoogleUserEmail] = useState("");
+  const [token] = useToken(createdGoogleUserEmail);
   const navigate = useNavigate();
 
-  // const { data: buyers = [] } = useQuery({
-  //   queryKey: ["buyers"],
-  //   queryFn: async () => {
-  //     const res = await fetch(`http://localhost:5000/users/buyer`);
-  //     const data = await res.json();
-  //     return data;
-  //   },
-  // });
+  if (token) {
+    if (value === "SIGN UP") {
+      navigate("/");
+    } else {
+      navigate(`${from}`);
+    }
+  }
 
   const handleGoogleSignIn = () => {
     popUpSignIn(providerGoogle)
       .then((result) => {
         const user = result.user;
         console.log(user);
+        setCreatedGoogleUserEmail(user.email);
         toast.success(`${value} WITH GOOGLE SUCCESSFUL`);
         const buyer = "buyer";
         handlefindUser(user.email, user, buyer);
-        if (value === "SIGN UP") {
-          navigate("/");
-        } else {
-          navigate(`${from}`);
-        }
       })
       .catch((e) => console.log(e));
   };
@@ -43,6 +41,7 @@ const GoogleProvider = ({ value, from }) => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+
         if (!data.length > 0) {
           if (saveUser) {
             saveUser(user.displayName, user.email, buyer);
@@ -62,9 +61,7 @@ const GoogleProvider = ({ value, from }) => {
       body: JSON.stringify(user),
     })
       .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-      })
+      .then((data) => {})
       .catch((e) => console.log(e));
   };
 

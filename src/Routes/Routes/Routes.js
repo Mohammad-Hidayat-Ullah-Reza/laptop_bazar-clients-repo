@@ -18,6 +18,7 @@ import AllBuyers from "../../Page/Dashboard/Admin/AllBuyers/AllBuyers";
 import AllSellers from "../../Page/Dashboard/Admin/AllSellers/AllSellers";
 import Payment from "../../Page/Dashboard/Buyer/Payment/Payment";
 import AdminRoute from "../AdminRoute/AdminRoute";
+import SellerRoute from "../SellerRoute/SellerRoute";
 
 export const routes = createBrowserRouter([
   {
@@ -58,35 +59,67 @@ export const routes = createBrowserRouter([
     children: [
       {
         path: "/dashboard",
-        element: <Dashboard></Dashboard>,
+        element: (
+          <PrivateRoute>
+            <Dashboard></Dashboard>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard/myOrders",
-        element: <MyOrders></MyOrders>,
+        element: (
+          <PrivateRoute>
+            <MyOrders></MyOrders>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard/payment/:id",
-        element: <Payment></Payment>,
+        element: (
+          <PrivateRoute>
+            <Payment></Payment>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard/myWishlist",
-        element: <MyWishlist></MyWishlist>,
+        element: (
+          <PrivateRoute>
+            <MyWishlist></MyWishlist>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard/addAProduct",
-        element: <AddAProduct></AddAProduct>,
+        element: (
+          <SellerRoute>
+            <AddAProduct></AddAProduct>
+          </SellerRoute>
+        ),
       },
       {
         path: "/dashboard/myProducts",
-        element: <MyProducts></MyProducts>,
+        element: (
+          <SellerRoute>
+            <MyProducts></MyProducts>
+          </SellerRoute>
+        ),
       },
       {
         path: "/dashboard/myBuyers",
-        element: <MyBuyers></MyBuyers>,
+        element: (
+          <SellerRoute>
+            <MyBuyers></MyBuyers>,
+          </SellerRoute>
+        ),
       },
       {
         path: "/dashboard/allBuyers",
-        element: <AllBuyers></AllBuyers>,
+        element: (
+          <AdminRoute>
+            <AllBuyers></AllBuyers>
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/allSellers",
