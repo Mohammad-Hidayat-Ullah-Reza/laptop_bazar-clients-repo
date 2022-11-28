@@ -12,18 +12,23 @@ const Footer = () => {
   return (
     <footer className="footer p-10 bg-base-100 text-base-content">
       <div>
-        <span className="footer-title text-blue-900">Services</span>
-        <Link className="link link-hover text-blue-900">Branding</Link>
-        <Link className="link link-hover text-blue-900">Design</Link>
-        <Link className="link link-hover text-blue-900">Marketing</Link>
-        <Link className="link link-hover text-blue-900">Advertisement</Link>
+        <span className="footer-title text-blue-900">Laptop Categories</span>
+        <Link className="link link-hover text-blue-900">Casual Laptop</Link>
+        <Link className="link link-hover text-blue-900">Gaming Laptop</Link>
+        <Link className="link link-hover text-blue-900">Premium Laptop</Link>
       </div>
       <div>
         <span className="footer-title text-blue-900">Company</span>
         <Link className="link link-hover text-blue-900">About us</Link>
-        <Link className="link link-hover text-blue-900">Blog</Link>
-        <Link className="link link-hover text-blue-900">Dashboard</Link>
-        <Link className="link link-hover text-blue-900">Press kit</Link>
+        <Link to="/blog" className="link link-hover text-blue-900">
+          Blog
+        </Link>
+        <Link to="/dashboard" className="link link-hover text-blue-900">
+          Dashboard
+        </Link>
+        <Link to="/" className="link link-hover text-blue-900">
+          advertisement
+        </Link>
       </div>
       <div>
         <span className="footer-title text-blue-900">Social</span>
