@@ -1,6 +1,6 @@
 # Laptop Bazar Site : https://laptop-bazar-4e5fd.web.app/
 
-## Client Side Repo: https://github.com/programming-hero-web-course-4/b612-used-products-resale-clients-side-Mohammad-Hidayat-Ullah-Reza
+## Client Side Repo: https://github.com/Mohammad-Hidayat-Ullah-Reza/laptop_bazar-clients-repo
 
 ## Server Side Repo: https://github.com/Mohammad-Hidayat-Ullah-Reza/laptop_bazar-server-repo
 
