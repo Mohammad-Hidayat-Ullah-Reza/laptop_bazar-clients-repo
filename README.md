@@ -2,7 +2,7 @@
 
 ## Client Side Repo: https://github.com/programming-hero-web-course-4/b612-used-products-resale-clients-side-Mohammad-Hidayat-Ullah-Reza
 
-## Server Side Repo: https://github.com/programming-hero-web-course-4/b612-used-products-resale-server-side-Mohammad-Hidayat-Ullah-Reza
+## Server Side Repo: https://github.com/Mohammad-Hidayat-Ullah-Reza/laptop_bazar-server-repo
 
 ### Laptop Bazar:
 
